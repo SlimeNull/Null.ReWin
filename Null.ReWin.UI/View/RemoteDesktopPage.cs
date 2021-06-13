@@ -23,7 +23,28 @@ namespace Null.ReWin.UI.View
                 ColumnCount = 1
             });
 
+            ControlDragTable.ControlAdded += ControlDragTable_ControlAdded;
             ControlDragTable.ControlRemoved += ControlDragTable_ControlRemoved;
+
+            ControlDragTable.ControlAdded += ControlDragTable_ControlChanged;
+            ControlDragTable.ControlRemoved += ControlDragTable_ControlChanged;
+
+            this.Text = "Empty blank";
+        }
+
+        private void ControlDragTable_ControlAdded(object sender, ControlEventArgs e)
+        {
+            (e.Control as RemoteDesktopControl).OnConnected += ControlDragTable_ControlChanged;
+        }
+
+        private void ControlDragTable_ControlChanged(object sender, EventArgs e)
+        {
+            if (ControlDragTable.Controls.Count == 0)
+                this.Text = "Empty blank";
+            else if (ControlDragTable.Controls.Count == 1)
+                this.Text = (ControlDragTable.Controls[0] as RemoteDesktopControl).Text;
+            else
+                this.Text = (ControlDragTable.Controls[0] as RemoteDesktopControl).Text + " ... " + ControlDragTable.Controls.Count;
         }
 
         private void ControlDragTable_ControlRemoved(object sender, ControlEventArgs e)

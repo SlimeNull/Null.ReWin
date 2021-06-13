@@ -42,9 +42,6 @@ namespace Null.ReWin.UI
             UpdateConnectionList();
 
             Open.WinKeyboardHook.KeyboardInterceptor kbdcapture = new Open.WinKeyboardHook.KeyboardInterceptor();
-            kbdcapture.KeyDown += (sender, e) => OnKeyDown(e);
-            kbdcapture.KeyPress += (sender, e) => OnKeyPress(e);
-            kbdcapture.KeyUp += (sender, e) => OnKeyUp(e);
             kbdcapture.StartCapturing();
         }
 

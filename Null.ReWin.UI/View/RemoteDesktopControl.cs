@@ -10,13 +10,11 @@ using Null.ReWin.UI.Module;
 
 namespace Null.ReWin.UI.View
 {
-    public class RemoteDesktopControl : AxMsRdpClient9
+    public class RemoteDesktopControl : AxMsRdpClient9NotSafeForScripting
     {
         public RemoteDesktopControl() : base()
         {
             this.Dock = DockStyle.Fill;
-
-            this.AdvancedSettings9.EnableWindowsKey = 1;
 
             this.OnDisconnected += RemoteDesktopControl_OnDisconnected;
             this.SizeChanged += RemoteDesktopControl_SizeChanged;
@@ -27,18 +25,13 @@ namespace Null.ReWin.UI.View
             this.Dispose();
         }
 
-        protected override bool ProcessKeyMessage(ref Message m)
-        {
-            if (Capture)
-                return base.ProcessKeyMessage(ref m);
-            return false;
-        }
 
         public bool LayoutChanging { get; set; } = true;
         public bool ConnectFromInfo(ConnectionInfo info)
         {
             try
             {
+                this.Text = string.IsNullOrWhiteSpace(info.Description) ? info.Address : info.Description;
                 this.Server = info.Address;
                 if (!string.IsNullOrEmpty(info.Username))
                     this.UserName = info.Username;

@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -102,6 +103,12 @@
     <Compile Include="View\NewConnection.Designer.cs">
       <DependentUpon>NewConnection.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\CommandPromptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CommandPromptForm.Designer.cs">
+      <DependentUpon>CommandPromptForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\RemoteDesktopControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -123,6 +130,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\CommandPromptForm.resx">
+      <DependentUpon>CommandPromptForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FileTransfer.resx">
       <DependentUpon>FileTransfer.cs</DependentUpon>
     </EmbeddedResource>
